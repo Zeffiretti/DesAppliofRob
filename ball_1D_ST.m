@@ -21,11 +21,12 @@ N_time=10000;
 t_ode = t0;
 z_ode = z0;
 options=odeset('abstol',2.25*1e-14,'reltol',2.25*1e-14,'events',@collision);%设置ODE参数，设置跳出ODE的events
-
+cnt=0
 %%%%%%%%%%% bouncing %%%%%%%%%%%%
 while 1
+    fprintf("[%05d]Start--------------",cnt)
     tspan = linspace(t0,t0+dt,N_time);
-    [t_temp, z_temp, tfinal] = ode113(@flying_ball,tspan,z0,options,m,g,k_collision);%自由落体，遇到碰撞跳出
+    [t_temp, z_temp, tfinal] = ode45(@flying_ball,tspan,z0,options,m,g,k_collision);%自由落体，遇到碰撞跳出
     zplus=collision_ball(t_temp(end),z_temp(end,:),m,g,k_collision);%碰撞的状态切换
     z0 = zplus;
     t0 = t_temp(end)+dt/N_time;
@@ -34,6 +35,11 @@ while 1
     if z_ode(end,2)<power(10,-4)%一直到碰撞后的速度足够小，结束计算
         break;
     end
+    if(cnt==5000)
+        break;
+    end
+    cnt=cnt+1;
+    fprintf("------------>End\n")
 end
 
 z=z_ode;

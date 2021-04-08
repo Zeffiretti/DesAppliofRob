@@ -69,12 +69,12 @@ for ii=1:6
     L(ii) = Ldd_qd_dt(ii) - Ld_q(ii);
     eqn(ii) = collect(L(ii),ud);%%% The k component has the equations of motion %%%
     RHS(ii,1) = -subs(eqn(ii),ud,zeros(6,1)); %negative sign because we want to take RHS to the right eventually
-    M(ii,1) =  subs(eqn(ii),ud,[1 0 0 0 0 0]) + RHS(ii,1);%%%% We need to write these as [M][alpha] = RHS 
-    M(ii,2) =  subs(eqn(ii),ud,[0 1 0 0 0 0]) + RHS(ii,1);
-    M(ii,3) =  subs(eqn(ii),ud,[0 0 1 0 0 0]) + RHS(ii,1);
-    M(ii,4) =  subs(eqn(ii),ud,[0 0 0 1 0 0]) + RHS(ii,1);
-    M(ii,5) =  subs(eqn(ii),ud,[0 0 0 0 1 0]) + RHS(ii,1);
-    M(ii,6) =  subs(eqn(ii),ud,[0 0 0 0 0 1]) + RHS(ii,1);
+    M(ii,1) =  subs(eqn(ii),ud,[1 0 0 0 0 0]') + RHS(ii,1);%%%% We need to write these as [M][alpha] = RHS 
+    M(ii,2) =  subs(eqn(ii),ud,[0 1 0 0 0 0]') + RHS(ii,1);
+    M(ii,3) =  subs(eqn(ii),ud,[0 0 1 0 0 0]') + RHS(ii,1);
+    M(ii,4) =  subs(eqn(ii),ud,[0 0 0 1 0 0]') + RHS(ii,1);
+    M(ii,5) =  subs(eqn(ii),ud,[0 0 0 0 1 0]') + RHS(ii,1);
+    M(ii,6) =  subs(eqn(ii),ud,[0 0 0 0 0 1]') + RHS(ii,1);
 end
 size(RHS)
 size(M)

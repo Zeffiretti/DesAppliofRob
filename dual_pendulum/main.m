@@ -38,7 +38,7 @@ p.Fy = 0;
 %Controller Gains
 p.Kp = 10;
 p.Kd = 8;
-p.collision=10;
+p.collision=15;
 
 %Single target:
 p.xtarget = x0; %What points are we shooting for in WORLD SPACE?
